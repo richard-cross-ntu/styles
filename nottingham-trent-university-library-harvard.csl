@@ -62,29 +62,30 @@
     </names>
   </macro>
   <macro name="access">
-    <choose>
-      <if variable="URL" match="any">
-        <group delimiter=": ">
-          <text term="available at" text-case="capitalize-first"/>
-          <text variable="URL"/>
-        </group>
-      </if>
-      <else-if match="any" variable="DOI">
-        <text variable="DOI" prefix="DOI: " />
-      </else-if>
-    </choose>
-    <if variable="accessed">
-		<group prefix=" [" suffix="]" delimiter=" ">
-<		text value="Accessed"/>
-			<date variable="accessed">
-			<date-part name="day" suffix=" "/>
-			<date-part name="month" suffix=" "/>
-			<date-part name="year"/>
-			</date>
-		</group>
-	</if>
-	</choose>
-  </macro>
+<choose>
+<if variable="URL" match="any">
+<group delimiter=": ">
+<text term="available at" text-case="capitalize-first"/>
+<text variable="URL"/>
+</group>
+</if>
+<else-if variable="DOI">
+<text variable="DOI" prefix="DOI: "/>
+</else-if>
+</choose>
+<choose>
+<if variable="accessed">
+<group prefix=" [" suffix="]" delimiter=" ">
+<text value="Accessed"/>
+<date variable="accessed">
+<date-part name="day" suffix=" "/>
+<date-part name="month" suffix=" "/>
+<date-part name="year"/>
+</date>
+</group>
+</if>
+</choose>
+</macro>
   <macro name="title">
     <choose>
       <if type="bill book graphic legal_case legislation motion_picture report song thesis" match="any">
